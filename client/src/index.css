@@ -1,0 +1,272 @@
+/* =============================================================
+   CHEWS — Craft Kitchen Journal Design System
+   Philosophy: Warm editorial aesthetics, artisan craft, premium
+   without pretension. Dark chocolate + warm cream + burnt orange.
+   Fonts: Playfair Display (headings) + DM Sans (body) + DM Mono (stats)
+   ============================================================= */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+}
+
+:root {
+  /* Craft Kitchen Journal palette */
+  --background: oklch(0.97 0.012 75);           /* warm parchment */
+  --foreground: oklch(0.18 0.025 55);           /* dark chocolate */
+  --card: oklch(0.99 0.008 75);                 /* cream white */
+  --card-foreground: oklch(0.18 0.025 55);
+  --popover: oklch(0.99 0.008 75);
+  --popover-foreground: oklch(0.18 0.025 55);
+  --primary: oklch(0.52 0.155 38);              /* burnt orange */
+  --primary-foreground: oklch(0.98 0.005 75);   /* near white */
+  --secondary: oklch(0.92 0.018 75);            /* warm light cream */
+  --secondary-foreground: oklch(0.25 0.025 55);
+  --muted: oklch(0.93 0.012 75);
+  --muted-foreground: oklch(0.48 0.022 55);
+  --accent: oklch(0.52 0.155 38);               /* burnt orange accent */
+  --accent-foreground: oklch(0.98 0.005 75);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.86 0.018 65);
+  --input: oklch(0.86 0.018 65);
+  --ring: oklch(0.52 0.155 38);
+  --radius: 0.25rem;
+  /* Chart colors */
+  --chart-1: oklch(0.52 0.155 38);
+  --chart-2: oklch(0.62 0.12 55);
+  --chart-3: oklch(0.72 0.09 70);
+  --chart-4: oklch(0.82 0.06 75);
+  --chart-5: oklch(0.35 0.04 55);
+  /* Sidebar */
+  --sidebar: oklch(0.99 0.008 75);
+  --sidebar-foreground: oklch(0.18 0.025 55);
+  --sidebar-primary: oklch(0.52 0.155 38);
+  --sidebar-primary-foreground: oklch(0.98 0.005 75);
+  --sidebar-accent: oklch(0.92 0.018 75);
+  --sidebar-accent-foreground: oklch(0.18 0.025 55);
+  --sidebar-border: oklch(0.86 0.018 65);
+  --sidebar-ring: oklch(0.52 0.155 38);
+  /* Custom brand tokens */
+  --chews-dark: oklch(0.14 0.025 45);           /* very dark chocolate */
+  --chews-brown: oklch(0.28 0.045 50);          /* deep brown */
+  --chews-amber: oklch(0.68 0.14 65);           /* warm amber */
+  --chews-cream: oklch(0.95 0.018 80);          /* warm cream */
+  --chews-orange: oklch(0.52 0.155 38);         /* burnt orange */
+  --chews-gold: oklch(0.75 0.12 75);            /* warm gold */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1200px;
+    }
+  }
+
+  /* Editorial divider line */
+  .editorial-divider {
+    width: 3rem;
+    height: 2px;
+    background: var(--chews-orange);
+    display: block;
+  }
+
+  /* Stamp badge */
+  .stamp-badge {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-8deg);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem;
+    aspect-ratio: 1;
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--chews-orange);
+  }
+
+  /* Hover lift card */
+  .lift-card {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+  .lift-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -8px oklch(0.18 0.025 55 / 0.18);
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--chews-orange);
+    transition: width 0.3s ease;
+  }
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+}
+
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+.opacity-0-init {
+  opacity: 0;
+}
